@@ -78,58 +78,49 @@ const data = {
 
 let selected = [];
 
-// 1) 대분류 버튼 생성
-const majorList = document.getElementById('majorList');
+// 1) 대분류 버튼 생성 (아이콘 포함)
 for (const key in data) {
+  const { name, icon } = data[key];
   majorList.insertAdjacentHTML('beforeend', `
-    <button class="btn btn-outline-secondary" data-major="${key}">
-      ${data[key].name}
+    <button class="btn btn-outline-secondary d-flex align-items-center" data-major="${key}">
+      <img src="${icon}" alt="${name} 아이콘" width="24" class="me-2">
+      ${name}
     </button>`);
 }
 
-// 2) 대분류 클릭 → 중분류 생성
+// 2) 대분류 클릭 → 중분류 생성 (아이콘 제거)
 majorList.addEventListener('click', e => {
-  const maj = e.target.dataset.major;
+  const maj = e.target.closest('button')?.dataset.major;
   if (!maj) return;
-  const mediums = data[maj].mediums;
-  const mediumList = document.getElementById('mediumList');
   mediumList.innerHTML = '';
-  for (const mKey in mediums) {
+  for (const mKey in data[maj].mediums) {
+    const { name } = data[maj].mediums[mKey];
     mediumList.insertAdjacentHTML('beforeend', `
       <button class="btn btn-outline-secondary" 
               data-major="${maj}" data-medium="${mKey}">
-        ${mediums[mKey].name}
+        ${name}
       </button>`);
   }
 });
 
-// 3) 중분류 클릭 → 소분류 모달 열기
+// 3) 소분류 버튼 생성 (아이콘 포함)
 mediumList.addEventListener('click', e => {
-  const maj = e.target.dataset.major;
-  const med = e.target.dataset.medium;
+  const btn = e.target.closest('button');
+  const maj = btn?.dataset.major;
+  const med = btn?.dataset.medium;
   if (!med) return;
-  const minors = data[maj].mediums[med].minors;
-  const minorList = document.getElementById('minorList');
   minorList.innerHTML = '';
-  minors.forEach(name => {
+  data[maj].mediums[med].minors.forEach(({ name, icon }) => {
     minorList.insertAdjacentHTML('beforeend', `
-      <button class="btn btn-outline-secondary" 
+      <button class="btn btn-outline-secondary d-flex align-items-center" 
               data-major="${maj}"
               data-medium="${med}"
               data-minor="${name}">
+        <img src="${icon}" alt="${name} 아이콘" width="24" class="me-2">
         ${name}
       </button>`);
   });
   new bootstrap.Modal(document.getElementById('minorModal')).show();
-});
-
-// 4) 소분류 선택 → 테이블 추가
-document.getElementById('minorList').addEventListener('click', e => {
-  const { major, medium, minor } = e.target.dataset;
-  if (!minor) return;
-  selected.push({ major, medium, minor, qty: 1 });
-  updateTable();
-  bootstrap.Modal.getInstance(document.getElementById('minorModal')).hide();
 });
 
 // 5) 테이블 갱신 함수

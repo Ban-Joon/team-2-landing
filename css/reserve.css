@@ -1,0 +1,192 @@
+/* 1. 폰트 및 컬러 변수 정의 (파일 최상단) */
+:root {
+  /* 폰트 */
+  --base-font: 'Noto Sans KR', sans-serif;
+
+  /* 배경색 */
+  --bg-warm-cream: #fdfaf5;
+  --bg-light: #fefefd;
+
+  /* 그린 계열 */
+  --lime-green: #99CC00;           /* 밝은 연두색 */
+  --emerald-green: #009966;        /* 에메랄드 그린 */
+  --forest-green: #006633;         /* 포레스트 그린 */
+  --olive-green-dark: #013220;     /* 다크 올리브 그린 */
+  --greenery: #88B04B;             /* 그리너리 */
+  --gradient-accent: linear-gradient(90deg, #a8e063, #56ab2f);
+}
+
+/* 2. 기본 글로벌 스타일 */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px; /* Mobile-First 기본 폰트 크기 */
+}
+
+body {
+  font-family: var(--base-font);
+  background-color: var(--bg-warm-cream);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 3. 스텝바 스타일 */
+/* 스텝바 전체 */
+.step-bar {
+  padding: 1rem;
+  background: var(--bg-light);
+}
+
+/* 리스트 레이아웃 */
+.step-bar__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem; /* 항목 사이 여백 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 각 단계 아이템 */
+.step-bar__item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* 단계 라벨(버튼 형태) */
+.step-bar__label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background-color: #ccc;
+  color: #444;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* 활성화된 단계 라벨 */
+.step-bar__item--active .step-bar__label {
+  background-color: var(--emerald-green);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 화살표 */
+.step-bar__arrow {
+  margin: 0 0.5rem;
+  color: #888;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+/* 활성 단계 앞뒤 화살표 색상 변경 (선택사항) */
+.step-bar__item--active + .step-bar__item .step-bar__arrow {
+  color: var(--emerald-green);
+}
+
+
+/* 4. 버튼 스타일 (커스텀 명명으로 Bootstrap과 구분) */
+.btn-primary-custom {
+  background: var(--gradient-accent);
+  color: #fff;
+  border: none;
+}
+.btn-secondary-custom {
+  background-color: var(--lime-green);
+  color: #fff;
+  border: none;
+}
+
+/* 5. 텍스트 강조색 */
+.text-accent {
+  color: var(--emerald-green);
+}
+.text-forest {
+  color: var(--forest-green);
+}
+
+/* 6. 섹션 기본 & 활성화 스타일 */
+.step-section {
+  display: none;
+  padding: 1rem;
+}
+.step-section.active {
+  display: block;
+}
+
+/* 7. 1단계 약관 박스 */
+.terms-box {
+  border: 1px solid var(--lime-green);
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.terms-content p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* 8. 2단계 품목 카드 */
+.item-card {
+  background-color: #fff;
+  border: 1px solid var(--emerald-green);
+}
+.item-card svg, .item-card img {
+  /* inline SVG 사용 시 fill 제어 권장 */
+  filter: none;
+  width: 32px;
+  height: auto;
+}
+.item-card .form-select {
+  width: 3.5rem;
+}
+
+/* 9. 3단계 폼 요소 스타일 */
+#form-step-3 .form-label {
+  font-weight: 500;
+}
+#addressSearchBtn {
+  white-space: nowrap;
+}
+#dateInput {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Flatpickr 커스텀 테마 (선택 사항) */
+.flatpickr-calendar {
+  font-family: var(--base-font);
+}
+
+/* 10. 4단계 요약 박스 */
+.summary-box {
+  background-color: #fff;
+  border: 1px solid var(--greenery);
+  border-radius: 4px;
+  padding: 1rem;
+}
+.summary-box h3 {
+  color: var(--forest-green);
+  margin-bottom: 0.5rem;
+}
+
+/* 11. 반응형 미디어 쿼리 */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  .step-section {
+    padding: 2rem;
+  }
+  .item-card {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한마당자원 브랜드스토리</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #fdfaf5; /* 따뜻한 크림색 배경 */
+            color: #444;
+            line-height: 1.8;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
+        }
+        
+        /* 헤더 섹션 */
+        header {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1549419137-b45201c107e0?q=80&w=2670&auto=format&fit=crop') no-repeat center center/cover; /* 담장 장미 대체 이미지 */
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* 오버레이 색상 조정 */
+            z-index: 0;
+        }
+
+        header h1, header p {
+            position: relative;
+            z-index: 1;
+            font-family: 'Nanum Myeongjo', serif; /* 명조체로 감성 강조 */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            animation: slideInUp 1.5s ease-out;
+        }
+
+        header p {
+            margin-top: 25px;
+            font-size: 2rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            animation: slideInUp 1.8s ease-out;
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 브랜드스토리 섹션 */
+        section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 25px;
+            text-align: center;
+            opacity: 0; /* 초기 투명 상태 */
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s ease-out forwards;
+            animation-delay: 0.5s; /* 헤더 애니메이션 후 실행 */
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%; /* 원형 이미지 */
+            border: 5px solid #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .story-image:hover {
+            transform: scale(1.05);
+        }
+
+        section h2 {
+            color: #56ab2f; /* 통일된 올리브그린 */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        section p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #555;
+            padding: 0 10px;
+        }
+
+        .highlight {
+            color: #56ab2f;
+            font-weight: bold;
+            font-size: 1.25rem; /* 강조 텍스트 크기 키우기 */
+        }
+
+        blockquote {
+            border-left: 5px solid #a8e063;
+            padding: 20px 25px;
+            margin: 40px auto;
+            font-family: 'Nanum Myeongjo', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #333;
+            text-align: left;
+            max-width: 700px;
+            background: #fefefd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 푸터 섹션 */
+        footer {
+            background: #56ab2f; /* 통일된 올리브그린 */
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>한마당자원 Reborn</h1>
+        <p>버려진 것에서 다시 피어나는 생명의 이야기</p>
+    </header>
+
+    <section>
+        <img class="story-image" src="https://images.unsplash.com/photo-1595168285513-39322363717e?q=80&w=2574&auto=format&fit=crop" alt="창립자 이미지"> <h2>우리의 시작</h2>
+        <p>
+            한마당자원은 단순한 재활용 그 이상을 지향합니다.<br>
+            <span class="highlight">버려진 것에서 새로운 가치를 찾아내는 믿음</span>에서 시작되었습니다.
+        </p>
+
+        <p>
+            작은 실천이 모여 <span class="highlight">지속 가능한 미래</span>를 만들 수 있다는 확신,<br>
+            그리고 <span class="highlight">공동체와 함께 나누는 순환의 가치</span>가 오늘의 한마당자원을 만들었습니다.
+        </p>
+
+        <blockquote>
+            "자원은 버려지는 것이 아니라, 다시 살아나는 기회가 되어야 한다."
+        </blockquote>
+
+        <p>
+            지금의 한마당자원은 <strong>Reborn</strong>이라는 이름처럼,<br>
+            모두가 함께 만드는 희망의 순환을 향해 나아가고 있습니다.
+        </p>
+    </section>
+
+    <footer>
+        ⓒ 2025 한마당자원 Reborn | 함께 만드는 지속 가능한 내일
+    </footer>
+
+</body>
+</html>

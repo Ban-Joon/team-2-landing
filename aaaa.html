@@ -1,0 +1,19 @@
+<form id="postForm">
+    <input type="text" id="postTitle" placeholder="제목을 입력하세요">
+    <textarea id="postContent" placeholder="내용을 입력하세요"></textarea>
+    <button type="submit">등록하기</button>
+</form>
+
+<script>
+    const form = document.getElementById('postForm');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+        
+        const title = document.getElementById('postTitle').value;
+        const content = document.getElementById('postContent').value;
+        
+        // 여기에 API 호출 로직을 추가합니다.
+        submitPost(title, content);
+    });
+</script>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새 글 작성 - REBONE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .write-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .write-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .write-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .write-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: backwards;
+        }
+
+        .write-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #99cc00, #80b300);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(153, 204, 0, 0.2);
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #99cc00;
+            background: rgba(153, 204, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .category-select {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%2399cc00" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 20px;
+            border: 2px dashed rgba(153, 204, 0, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(153, 204, 0, 0.02);
+        }
+
+        .file-upload-label:hover {
+            border-color: #99cc00;
+            background: rgba(153, 204, 0, 0.05);
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #99cc00;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-text {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .file-list {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(153, 204, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #99cc00;
+        }
+
+        .file-remove {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px;
+        }
+
+        .file-remove:hover {
+            color: #ff0000;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(153, 204, 0, 0.2);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            color: white;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #80b300, #6d9900);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+            border-color: #99cc00;
+            color: #99cc00;
+        }
+
+        .preview-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(153, 204, 0, 0.2);
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #99cc00;
+            font-weight: 600;
+        }
+
+        .preview-content {
+            background: rgba(153, 204, 0, 0.02);
+            border: 1px solid rgba(153, 204, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 100px;
+        }
+
+        .preview-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .preview-category {
+            display: inline-block;
+            background: rgba(153, 204, 0, 0.1);
+            color: #99cc00;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .preview-text {
+            color: #666;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .char-counter.warning {
+            color: #ff6b6b;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .write-form {
+                padding: 25px 20px;
+            }
+
+            .write-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="write-header">
+            <h1>새 글 작성</h1>
+            <p>REBONE 커뮤니티에 소중한 이야기를 공유해주세요</p>
+        </div>
+
+        <form class="write-form" id="writeForm">
+            <div class="form-group">
+                <label for="category">카테고리</label>
+                <select id="category" name="category" class="category-select" required>
+                    <option value="">카테고리를 선택하세요</option>
+                    <option value="product-review">제품 리뷰</option>
+                    <option value="recycle-tip">재활용 팁</option>
+                    <option value="environment">환경 이야기</option>
+                    <option value="qna">Q&A</option>
+                    <option value="free">자유게시판</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required maxlength="100">
+                <div class="char-counter" id="titleCounter">0 / 100</div>
+            </div>
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" placeholder="내용을 입력하세요" required maxlength="5000"></textarea>
+                <div class="char-counter" id="contentCounter">0 / 5000</div>
+            </div>
+
+            <div class="form-group">
+                <label>이미지 첨부</label>
+                <div class="file-upload">
+                    <input type="file" id="imageUpload" accept="image/*" multiple>
+                    <label for="imageUpload" class="file-upload-label">
+                        <div class="file-upload-icon">📷</div>
+                        <div class="file-upload-text">이미지를 선택하거나 드래그해주세요</div>
+                    </label>
+                </div>
+                <div class="file-list" id="fileList"></div>
+            </div>
+            
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="history.back()">취소</button>
+                <button type="submit" class="btn btn-primary">게시하기</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 폼 요소들
+        const titleInput = document.getElementById('title');
+        const contentTextarea = document.getElementById('content');
+        const categorySelect = document.getElementById('category');
+        const imageUpload = document.getElementById('imageUpload');
+        const fileList = document.getElementById('fileList');
+        const previewContent = document.getElementById('previewContent');
+        const writeForm = document.getElementById('writeForm');
+
+        // 문자 카운터
+        const titleCounter = document.getElementById('titleCounter');
+        const contentCounter = document.getElementById('contentCounter');
+
+        let uploadedFiles = [];
+
+        // 제목 문자 카운터
+        titleInput.addEventListener('input', function() {
+            const length = this.value.length;
+            titleCounter.textContent = `${length} / 100`;
+            if (length > 90) {
+                titleCounter.classList.add('warning');
+            } else {
+                titleCounter.classList.remove('warning');
+            }
+            updatePreview();
+        });
+
+        // 내용 문자 카운터
+        contentTextarea.addEventListener('input', function() {
+            const length = this.value.length;
+            contentCounter.textContent = `${length} / 5000`;
+            if (length > 4500) {
+                contentCounter.classList.add('warning');
+            } else {
+                contentCounter.classList.remove('warning');
+            }
+            updatePreview();
+        });
+
+        // 카테고리 변경시 미리보기 업데이트
+        categorySelect.addEventListener('change', updatePreview);
+
+        // 미리보기 업데이트 함수
+        function updatePreview() {
+            const title = titleInput.value.trim();
+            const content = contentTextarea.value.trim();
+            const category = categorySelect.value;
+
+            if (!title && !content) {
+                previewContent.innerHTML = '<div style="color: #999; text-align: center; padding: 20px;">제목과 내용을 입력하면 미리보기가 표시됩니다</div>';
+                return;
+            }
+
+            const categoryNames = {
+                'product-review': '제품 리뷰',
+                'recycle-tip': '재활용 팁',
+                'environment': '환경 이야기',
+                'qna': 'Q&A',
+                'free': '자유게시판'
+            };
+
+            previewContent.innerHTML = `
+                ${category ? `<div class="preview-category">${categoryNames[category]}</div>` : ''}
+                ${title ? `<div class="preview-title">${title}</div>` : '<div class="preview-title" style="color: #ccc;">제목을 입력하세요</div>'}
+                ${content ? `<div class="preview-text">${content}</div>` : '<div class="preview-text" style="color: #ccc;">내용을 입력하세요</div>'}
+            `;
+        }
+
+        // 파일 업로드 처리
+        imageUpload.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    uploadedFiles.push(file);
+                    addFileToList(file);
+                }
+            });
+        });
+
+        // 파일 목록에 추가
+        function addFileToList(file) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.innerHTML = `
+                <span>📷 ${file.name}</span>
+                <button type="button" class="file-remove" onclick="removeFile(this, '${file.name}')">✕</button>
+            `;
+            fileList.appendChild(fileItem);
+        }
+
+        // 파일 제거
+        function removeFile(button, fileName) {
+            uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
+            button.parentElement.remove();
+        }
+
+        // 드래그 앤 드롭 처리
+        const fileUploadLabel = document.querySelector('.file-upload-label');
+
+        fileUploadLabel.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#99cc00';
+            this.style.background = 'rgba(153, 204, 0, 0.1)';
+        });
+
+        fileUploadLabel.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'rgba(153, 204, 0, 0.3)';
+            this.style.background = 'rgba(153, 204, 0, 0.02)';
+        });
+
+        fileUploadLabel.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'rgba(153, 204, 0, 0.3)';
+            this.style.background = 'rgba(153, 204, 0, 0.02)';
+            
+            const files = Array.from(e.dataTransfer.files);
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    uploadedFiles.push(file);
+                    addFileToList(file);
+                }
+            });
+        });
+
+        // 폼 제출 처리
+        writeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!titleInput.value.trim() || !contentTextarea.value.trim() || !categorySelect.value) {
+                alert('모든 필수 항목을 입력해주세요.');
+                return;
+            }
+
+            // 실제로는 서버에 데이터를 전송
+            const formData = new FormData();
+            formData.append('title', titleInput.value);
+            formData.append('content', contentTextarea.value);
+            formData.append('category', categorySelect.value);
+            
+            uploadedFiles.forEach((file, index) => {
+                formData.append(`image_${index}`, file);
+            });
+
+            alert('게시글이 성공적으로 등록되었습니다!');
+            localStorage.removeItem('draftPost');
+            
+            // 커뮤니티 페이지로 이동 (실제로는 리디렉션)
+            history.back();
+        });
+    </script>
+</body>
+</html>

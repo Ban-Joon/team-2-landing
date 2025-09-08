@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판매 상품</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #fdfaf5;
+      color: #444;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    /* 판매 상품 */
+    .thumbnail {
+      margin: 50px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    .card {
+      position: relative;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 16px 25px rgba(0,0,0,0.2);
+    }
+    .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-img-top { transform: scale(1.05); }
+
+    .card-img-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 10px 15px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      color: #43c408;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .card:hover .card-img-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    }
+    .card-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0; }
+    .card-text { font-weight: 600; font-size: 0.9rem; margin-bottom: 0; }
+
+    /* NEW 배지 */
+    .badge-new {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    /* 애니메이션 */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <div class="thumbnail">
+    <h2 class="text-center mb-4">판매 상품들</h2>
+
+    <!-- 항상 보이는 상품 8개 -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <div class="badge-new">NEW</div>
+          <img src="중고제품 사진/1/20250425＿114144.jpg" class="card-img-top" alt="상품1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text">클라쎄550리터 중고양문형냉장고 / 30만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/2/1.jpg" class="card-img-top" alt="상품1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text">삼성615리터 / 40만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/3/1.jpg" class="card-img-top" alt="상품3">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text"> 대우243리터 / 15만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/4//20241114＿162919.jpg" class="card-img-top" alt="상품4">
+          <div class="card-img-overlay">
+            <h5 class="card-title">세탁기</h5>
+            <p class="card-text">미디어12키로 / 20만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/5//20230117＿103512.jpg" class="card-img-top" alt="상품5">
+          <div class="card-img-overlay">
+            <h5 class="card-title">세탁기</h5>
+            <p class="card-text">대우6키로 / 15만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/6/img11.jpg" class="card-img-top" alt="상품6">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text">삼성 4도어냉장고 645리터 / 60만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/7/1280＿20250806＿183155.jpg" class="card-img-top" alt="상품7">
+          <div class="card-img-overlay">
+            <h5 class="card-title">세탁기</h5>
+            <p class="card-text">대우 15키로 에어버블 / 20만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/8/1280＿externalFile.jpg" class="card-img-top" alt="상품8">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text">클라쎄550리터 / 35만원</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 숨겨진 7개 상품 -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 extra-products d-none mt-3">
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/9/2.jpg" class="card-img-top" alt="상품9">
+          <div class="card-img-overlay">
+            <h5 class="card-title">TV</h5>
+            <p class="card-text"> LG OLED 65인치 스마트TV / 46만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/10/20241128＿145337.jpg" class="card-img-top" alt="상품10">
+          <div class="card-img-overlay">
+            <h5 class="card-title">냉장고</h5>
+            <p class="card-text">하이얼248리터 / 30만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/11/640＿20250830＿174814.jpg" class="card-img-top" alt="상품11">
+          <div class="card-img-overlay">
+            <h5 class="card-title">청소기</h5>
+            <p class="card-text">LG 진공청소기 / 5만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/12/1280＿20250305＿182715.jpg" class="card-img-top" alt="상품12">
+          <div class="card-img-overlay">
+            <h5 class="card-title">청소기</h5>
+            <p class="card-text"> lg 로봇 진공청소기 / 25만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/13/img11.jpg" class="card-img-top" alt="상품13">
+          <div class="card-img-overlay">
+            <h5 class="card-title">김치냉장고</h5>
+            <p class="card-text">LG DIOS 김치톡톡 402리터 / 70만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/14/KakaoTalk_20250415_112922742_01.jpg" class="card-img-top" alt="상품14">
+          <div class="card-img-overlay">
+            <h5 class="card-title">TV</h5>
+            <p class="card-text">삼성48인치커브드티비 / 30만원</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="중고제품 사진/15/1280＿20250827＿141851.jpg" class="card-img-top" alt="상품15">
+          <div class="card-img-overlay">
+            <h5 class="card-title">청소기</h5>
+            <p class="card-text">원더스 다이나킹 R9 로봇청소기 / 7.5만원</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 펼치기 버튼 -->
+    <div class="text-center mt-3">
+      <button id="toggle-btn" class="btn btn-outline-primary">펼치기</button>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.card').forEach((card,i)=>{ card.style.animationDelay=`${i*0.1}s`; });
+
+  const toggleBtn=document.getElementById("toggle-btn");
+  const extraProducts=document.querySelector(".extra-products");
+
+  toggleBtn.addEventListener("click",()=>{
+    const isHidden=extraProducts.classList.contains("d-none");
+    if(isHidden){
+      extraProducts.classList.remove("d-none");
+      toggleBtn.textContent="접기";
+      extraProducts.querySelectorAll('.card').forEach((card,i)=>{
+        card.style.opacity=0;
+        card.style.transform="translateY(20px)";
+        setTimeout(()=>{
+          card.style.animation="fadeUp 0.6s forwards";
+          card.style.animationDelay=`${i*0.1}s`;
+        },50);
+      });
+    }else{
+      extraProducts.classList.add("d-none");
+      toggleBtn.textContent="펼치기";
+    }
+  });
+</script>
+
+</body>
+</html>

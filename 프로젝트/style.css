@@ -1,0 +1,336 @@
+:root {
+    --main-green: #56ab2f;
+    --light-green: #89c05e;
+    --olive-green: #88B778;
+    --accent-green: #90c278;
+    --main-orange: #e67e22;
+    --light-orange: #f39c12;
+    --text-color: #333;
+    --bg-white: #ffffff;
+    --shadow-light: 0 4px 15px rgba(0,0,0,0.08);
+    --shadow-medium: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 모든 요소 기본 커서 강제 (물음표 등 제거) */
+* {
+    cursor: default !important;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Nanum Myeongjo', serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background: var(--bg-white);
+    line-height: 2.2;
+    overflow-x: hidden;
+}
+
+/* 헤더 영역 */
+header {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+}
+
+header video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.8);
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 0;
+}
+
+/* 배너 글귀 이미지 스타일 */
+.banner-title-image {
+    position: relative;
+    z-index: 1;
+    max-width: 100%; 
+    height: auto;
+    opacity: 0;
+    /* ⭐ 애니메이션 수정 (더 천천히 나타나도록) */
+    animation: fadeInSlower 4s ease-out forwards;
+}
+
+/* ⭐ 새로운 애니메이션 키프레임 (더 느리게) */
+@keyframes fadeInSlower {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 본문 섹션 */
+section {
+    max-width: 960px;
+    margin: 80px auto;
+    padding: 40px;
+    background: var(--bg-white);
+    border-radius: 15px;
+    box-shadow: var(--shadow-medium);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 창업자 이미지 */
+.story-content {
+    overflow: hidden;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.founder-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid var(--accent-green);
+    box-shadow: var(--shadow-medium);
+    float: left;
+    margin: 0 40px 20px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.founder-image:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin: 0 0 20px;
+    color: var(--main-green);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+    
+.rebone-video-in-h2 {
+    width: 100px;
+    height: auto;
+    margin-left: 15px;
+    vertical-align: middle;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease-in-out;
+}
+    
+.rebone-video-in-h2:hover {
+    transform: scale(1.1);
+}
+    
+p {
+    margin-bottom: 35px;
+    font-size: 1.15rem;
+    line-height: 2.2;
+    color: #444;
+}
+    
+/* 텍스트 컨테이너 */
+.text-wrap-container {
+    text-align: left;
+    padding-top: 20px;
+}
+    
+.text-below-image {
+    clear: both;
+    margin-top: 30px;
+    text-align: center;
+}
+
+blockquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin: 40px auto;
+    color: var(--light-green);
+    border-left: 6px solid var(--main-orange);
+    padding: 15px 25px;
+    background-color: #fff9ed;
+    border-radius: 8px;
+    max-width: 700px;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    clear: both;
+}
+
+blockquote.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+    
+/* 강조 텍스트 */
+.highlight {
+    color: var(--main-orange);
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+}
+
+.highlight:hover {
+    transform: translateY(-3px);
+    text-shadow: 0 5px 10px rgba(230, 126, 34, 0.3);
+    cursor: pointer; /* help → pointer 로 변경 */
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-orange);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-out;
+}
+
+.highlight:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* h2 제목에 그라데이션 효과 */
+h2 {
+    font-size: 2.2rem;
+    margin: 0 0 20px;
+    background: linear-gradient(90deg, var(--main-green), var(--main-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+
+/* 푸터 영역 */
+footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 60px;
+    background-color: var(--olive-green);
+    color: #ffffff; /* ✅ 글씨색 흰색으로 고정 */
+    font-size: 1.1rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+    
+/* 배경 음악 재생 버튼 */
+.music-player {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#play-music-btn {
+    background-color: var(--main-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer !important; /* 버튼은 클릭 포인터 유지 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#play-music-btn:hover {
+    background-color: var(--light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .founder-image {
+        float: none;
+        margin: 0 auto 30px auto;
+        display: block;
+    }
+    .story-content, .text-wrap-container {
+        text-align: center;
+    }
+    h2, p, blockquote {
+        text-align: center;
+    }
+    h2 .rebone-video-in-h2 {
+        width: 80px;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
+
+/* ⭐ 스크롤 유도 메시지 스타일 수정 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInAndBounce 2s ease-out 4s forwards; /* 배너 이미지 애니메이션 끝난 후 시작 */
+}
+
+.scroll-indicator p {
+    color: white; 
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+}
+
+/* ⭐ 화살표 스타일 추가 */
+.scroll-arrow {
+    font-size: 2.5rem;
+    line-height: 1; /* 글줄 간격을 줄여서 텍스트와 가깝게 */
+    animation: bouncingArrow 1.5s infinite ease-in-out;
+}
+
+/* ⭐ 애니메이션 키프레임 수정 (더 부드럽게) */
+@keyframes fadeInAndBounce {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    75% { transform: translateX(-50%) translateY(5px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ⭐ 화살표 애니메이션 키프레임 */
+@keyframes bouncingArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}

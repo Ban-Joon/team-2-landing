@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한마당자원 브랜드스토리 - Reborn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🎵 변환된 MP3 파일 사용 -->
+    <audio id="background-music" loop>
+        <source src="output_audio.mp3" type="audio/mpeg">
+        브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+
+    <header>
+        <video autoplay muted loop playsinline>
+            <source src="한마당자원.mp4" type="video/mp4">
+            브라우저가 영상을 지원하지 않습니다.
+        </video>
+        
+        <img src="images/호호.png" alt="한마음" class="banner-title-image">
+    </header>
+
+    <section id="story-section">
+        <h2>
+            우리의 시작, 새로운 가능성을 찾아서 
+            <video autoplay muted loop playsinline class="rebone-video-in-h2">
+                <source src="리본.mp4" type="video/mp4">
+            </video>
+        </h2>
+        <div class="story-content">
+            <img class="founder-image" src="images/빠빠.jpg" alt="창업자 사진">
+            <div class="text-wrap-container">
+                <p>
+                    한마당자원은 단순한 재활용을 넘어,
+                    세상에 버려지는 것들 속에서 다시 태어날 수 있는 
+                    <span class="highlight">새로운 가능성</span>을 발견합니다.
+                </p>
+                <p>
+                    처음의 마음은 소박했습니다. "작은 실천 하나가 세상을 바꿀 수 있을까?"
+                    하지만 그 믿음이 모여 
+                    <span class="highlight">지속 가능한 미래</span>를 향한 큰 걸음이 되었고, 
+                    함께 나누는 기쁨과 순환의 가치는 
+                    <span class="highlight">공동체의 힘</span>으로 더욱 깊어졌습니다.
+                </p>
+            </div>
+            
+            <div class="text-below-image">
+                <blockquote>
+                    "자원은 버려지는 것이 아니라,<br>
+                    다시 살아나는 기회가 되어야 한다."
+                </blockquote>
+
+                <p>
+                    한마당자원은 무심코 버려진 것들 속에서도 다시 빛을 낼 수 있는 
+                    <strong>생명의 가치</strong>를 찾아내고자 합니다.
+                    지금의 한마당자원은 <strong>Reborn</strong>이라는 이름처럼, 
+                    모두가 함께 만들어가는 
+                    <span class="highlight">희망의 순환</span>을 향해 나아가고 있습니다.
+                    그리고 그 길 위에는, 작은 마음을 모아 큰 변화를 만들어가는 
+                    <span class="highlight">우리 모두의 이야기</span>가 있습니다. 🌱
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="music-player">
+        <button id="play-music-btn">🎵 사장님 이야기</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 한마당자원. All Rights Reserved.</p>
+        <p>지속 가능한 미래를 위한 한마당자원의 노력은 계속됩니다.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const section = document.getElementById('story-section');
+            const blockquote = section.querySelector('blockquote');
+            const audio = document.getElementById('background-music');
+            const playBtn = document.getElementById('play-music-btn');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('is-visible');
+                        setTimeout(() => {
+                            blockquote.classList.add('is-visible');
+                        }, 500);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            observer.observe(section);
+
+            // 버튼 클릭 시 음악 재생/정지
+            playBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playBtn.textContent = '⏸️ 사장님 이야기 (재생 중)';
+                } else {
+                    audio.pause();
+                    playBtn.textContent = '🎵 사장님 이야기';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

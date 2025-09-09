@@ -1,12 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>재활용품 종류 및 배출방법</title>
+  <meta charset="utf-8">
+  <title>캔류 분리배출 안내</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 공통 CSS -->
+  <link rel="stylesheet" href="cssbase.css">
 </head>
 <body>
-    <img src="images/캔류안내.png" alt="프로젝트 1">
+  <!-- ===== 헤더 & 요약 ===== -->
+  <header class="header">
+    <div class="container">
+      <h1 class="m0">재활용품 분리배출 요령</h1>
+      <p class="small mt8">드링크제병 / 와인병 / 주스병 / 소주 • 맥주 • 청량음료병 </p>
 
+      <!-- 상단 요약 배지(알약형) -->
+      <div class="hero mt16">
+        <span class="pill" aria-current="page"><img src="images/유리(흑).png" alt="종이팩" class="icon_image"></span>
+        <p class="m0">이물질 제거 → 마른 상태로 배출 → 유리병이 깨지지 않도록 주의하여 배출</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- =======================================================
+         A. 종이류 섹션
+         ======================================================= -->
+    <section class="mt24" id="paper">
+      <h2 class="m0">금속캔 및 고철류</h2>
+      <p class="small mt8">음료 / 주류캔 / 식료품캔/ 기타캔(부탄가스, 살충제 용기 등) / 고철</p>
+
+      <div class="grid mt16">
+        <!-- 비닐류 -->
+        <article class="card">
+          <div class="card-head"><h3 class="m0">음료, 주류캔, 식료품캔</h3></div>
+          <div class="card-body">
+            <img class="example" src="images/캔류재활용.jpg" alt="음료캔" loading="lazy">
+            <ul class="list-unstyled mt8">
+              <li>♻️내용물을 비우고 물로 헹군 후 이물질을 제거하여 배출합니다.</li>
+              <li>♻️담배꽁초 등 이물질을 넣지 않고 배출합니다.</li>
+              <li>♻️플라스틱 뚜껑 등 금속캔과 다른 재질은 제거한 후 배출합니다.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 스티로폼 -->
+        <article class="card">
+          <div class="card-head"><h3 class="m0">기타캔류(부탄가스, 살충제 등)</h3></div>
+          <div class="card-body">
+            <img class="example" src="images/부탄가스.jpg" alt="가스캔" loading="lazy">
+            <ul class="list-unstyled mt8">
+              <li>♻️내용물을 비우고 물로 헹군 후 이물질을 제거하여 배출합니다.</li>
+              <li>♻️담배꽁초 등 이물질을 넣지 않고 배출합니다.</li>
+              <li style="font-size: 0.9rem; color: red;">🙅‍♂️가스 용기는 구멍을 내어 내용물을 완전히 제거한 후 배출</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- 허용/비해당 품목 라벨 -->
+      <p class="small mt16">
+        <span class="chip ok">해당품목</span> 음료수캔, 맥주캔, 통조림캔, 부탄가스 용기, 살충제 용기
+        &nbsp;&nbsp;
+        <span class="chip no">비해당품목</span> 알루미늄 호일, 락카, 페인트통 등 내용물을 제거하기 힘든 통 등
+      </p>
+
+      <div class="grid mt16">
+        <!-- 배출 전 준비 (DO) -->
+        <article class="card">
+          <div class="card-head">
+            <span class="badge ok" >DO</span><h3 class="m0">배출 전 준비</h3>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled">
+              <li>♻️ 내용물 제거한 후 배출</li>
+              <li>♻️ 락카, 페인트통 등은 특수규격마대에 담아 배출</li>
+              <li>♻️ 이물질이 섞이지 않도록 한 후 묶어서 배출</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 금지 (DON'T) -->
+        <article class="card">
+          <div class="card-head">
+            <span class="badge no">DON'T</span><h3 class="m0">이렇게는 금지</h3>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled">
+              <li style="color: red;">🙅‍♂️ 다른 재질과 혼합 배출</li>
+              <li style="color: red;">🙅‍♂️ 담배꽁초 등 이물질이 있는 상태에서 배출</li>
+              <li style="color: red;">🙅‍♂️ 가스가 남아있는 상태 그대로 배출</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- 흐르는 물 헹구기 → 이물질 제거·말리기 → 모아 배출
+      <h3 class="mt24 m0">비닐류 분리배출 요령</h3>
+        <article class="card" style="border: none;">
+          <div class="card-body">
+            <img src="images/비닐 분리배출요령.jpg" alt="비닐류 분리배출 요령" style="width: 100%; height: auto; display: block;" >
+          </div>
+        </article>
+
+      <h3 class="mt24 m0">스티로폼 분리배출 요령</h3>
+        <article class="card" style="border: none;">
+          <div class="card-body">
+            <img src="images/스티로폼 분리배출요령.jpg" alt="스티로폼 분리배출 요령" style="width: 100%; height: auto; display: block;" >
+          </div>
+        </article>
+
+    </section> -->
+
+    
+
+    <!-- 하단 내비게이션(필요 시 수정) -->
+    <nav class="pager">
+      <a href="index.html" style="font-weight: bold;">← 메인으로</a>
+      <a href="기타안내.html" style="font-weight: bold;">다음: 기타 →</a>
+    </nav>
+  </main>
+
+
+
+  <!-- 페이지 전용 보조 스타일: 라벨(허용/비해당) -->
+  <style>
+    .chip{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; border:1px solid }
+    .chip.ok{ background:#E9F5EA; color:#1e5f22; border-color:#53A451 }
+    .chip.no{ background:#FFF3CD; color:#7a4a00; border-color:#FFB703 }
+  </style>
 </body>
 </html>

@@ -1,0 +1,69 @@
+/* -------- 기본 -------- */
+:root{
+  --brand:#53A451;         /* 메인 초록 */
+  --brand-weak:#E9F5EA;    /* 연초록 */
+  --warn:#FFB703;
+  --text:#222;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; font-family:system-ui, -apple-system, "Pretendard", "Noto Sans KR", sans-serif; color:var(--text); }
+.container{ max-width:1080px; margin:auto; padding:20px; }
+
+/* 헤더/푸터 공통 여백 */
+.header, .footer{ padding:14px 0; }
+
+/* 리스트 점 제거 유틸 */
+.list-unstyled{ list-style:none; padding-left:0; margin:0; }
+
+/* 알약형 배지(카테고리 버튼/태그) */
+.pill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 16px; border:4px solid var(--brand); border-radius:999px;
+  background:#fff; color:var(--text); text-decoration:none; font-weight:600;
+}
+.pill .icon{
+  width:44px; height:44px; border-radius:50%; background:var(--brand);
+  display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:20px;
+}
+.pill:hover{ box-shadow:0 6px 16px rgba(83,164,81,.18); transform:translateY(-1px); }
+
+.icon_image {
+    height: 50px;
+    width: 50px;
+}
+
+/* 카드 */
+.grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+@media (min-width:768px){ .grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1100px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+.card{ border:1px solid #dfe8df; border-radius:14px; overflow:hidden; background:#fff; }
+.card .card-head{ display:flex; align-items:center; gap:10px; padding:14px 16px; background:#fff; border-bottom:1px solid #eef3ee; }
+.card .card-body{ padding:16px; }
+.badge{ display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; }
+.badge.ok{ background:var(--brand-weak); color:#1e5f22; }
+.badge.no{ background:#FFF3CD; color:#7a4a00; }
+
+/* 이미지 */
+.example{ width:100%; border-radius:10px; border:1px solid #eee; }
+
+/* 브레드크럼 & 상단 히어로 */
+.breadcrumb{ font-size:14px; color:#666; margin-bottom:8px; }
+.hero{ background:var(--brand-weak); border:1px solid #d3ead3; border-radius:16px; padding:18px; display:flex; align-items:center; gap:12px; }
+
+/* 하단 이전/다음 */
+.pager{ display:flex; justify-content:space-between; gap:10px; margin-top:24px; }
+.pager a{ flex:1; text-align:center; padding:12px; border:1px solid #dfe8df; border-radius:10px; text-decoration:none; color:var(--text); }
+.pager a:hover{ background:#f6fbf6; }
+
+/* 포커스 접근성 */
+a:focus-visible, button:focus-visible{ outline:3px solid var(--warn); outline-offset:2px; }
+
+/* 작은 유틸 */
+.m0{ margin:0; } .mt8{ margin-top:8px; } .mt16{ margin-top:16px; } .mt24{ margin-top:24px; }
+.small{ font-size:14px; color:#666; }
+
+.stepImg {
+    width: 100px;
+    height: 100px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>커뮤니티 게시판 - 목록</title>
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="postStyle.css" />
+</head>
+<!-- data-page="list"로 현재 페이지 타입을 스크립트에 알려줌 -->
+<body data-page="list">
+  <!-- 공통 헤더 -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="site-title"><a href="list.html">커뮤니티 게시판</a></h1>
+      <nav class="nav">
+        <!-- 새 글 쓰기 페이지로 이동 -->
+        <a class="btn primary" href="new.html">＋ 새 글 쓰기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 검색창: 제목에 대해서만 필터링 (초보친화형) -->
+    <section class="toolbar">
+      <input type="text" id="searchInput" placeholder="제목 검색" />
+    </section>
+
+    <!-- 제목만 나열되는 리스트 -->
+    <ul id="titleList" class="title-list">
+      <!-- JS에서 동적 렌더링 -->
+    </ul>
+
+    <div id="emptyListHint" class="empty" hidden>
+      아직 작성된 글이 없습니다. 우측 상단 <b>＋ 새 글 쓰기</b>를 눌러 첫 글을 남겨보세요.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 커뮤니티 게시판</p>
+  </footer>
+
+  <!-- 공통 스크립트 (세 페이지 전부 이 파일 하나만 로드) -->
+  <script src="script.js"></script>
+</body>
+</html>

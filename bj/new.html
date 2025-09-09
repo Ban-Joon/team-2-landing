@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>커뮤니티 게시판 - 새 글 쓰기</title>
+  <link rel="stylesheet" href="postStyle.css" />
+</head>
+<body data-page="new">
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="site-title"><a href="list.html">커뮤니티 게시판</a></h1>
+      <nav class="nav">
+        <a class="btn" href="list.html">← 목록</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">새 글 쓰기</h2>
+
+    <!-- 입력 폼 -->
+    <section class="post-form">
+      <!-- 제목 입력 -->
+      <input type="text" id="titleInput" placeholder="제목을 입력하세요" />
+      <!-- 내용 입력 -->
+      <textarea id="contentInput" placeholder="내용을 입력하세요"></textarea>
+
+      <div class="form-actions">
+        <!-- 저장 버튼: script.js에서 클릭 이벤트로 처리 -->
+        <button id="savePostBtn" class="btn primary">저장</button>
+        <!-- 취소: 목록으로 이동 -->
+        <a class="btn" href="list.html">취소</a>
+      </div>
+    </section>
+
+    <!-- (선택) 안내 -->
+    <p class="muted">저장하면 <b>목록 페이지</b>로 이동하며, 데이터는 브라우저 <code>localStorage</code>에 보관됩니다.</p>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 커뮤니티 게시판</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

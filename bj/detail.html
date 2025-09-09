@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>커뮤니티 게시판 - 상세</title>
+  <link rel="stylesheet" href="postStyle.css" />
+</head>
+<body data-page="detail">
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="site-title"><a href="list.html">커뮤니티 게시판</a></h1>
+      <nav class="nav">
+        <a class="btn" href="list.html">← 목록</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 글이 없거나 ID가 잘못되었을 때 보여줄 경고 -->
+    <div id="notFound" class="empty" hidden>해당 글을 찾을 수 없습니다. <a href="list.html">목록으로 돌아가기</a></div>
+
+    <!-- 글 상세 -->
+    <article id="detailArticle" class="post" hidden>
+      <header class="post-header">
+        <h2 id="detailTitle" class="post-title"></h2>
+        <div class="post-meta">
+          <span id="detailDate"></span> · 좋아요 <span id="detailLikes">0</span>
+        </div>
+      </header>
+
+      <!-- 본문: 보안상 textContent로 채워 XSS 방지 -->
+      <div id="detailContent" class="post-content"></div>
+
+      <div class="post-actions">
+        <button id="likeBtn" class="btn">좋아요 👍</button>
+        <!-- 수정: 초보 흐름에선 간단히 prompt로 수정 -->
+        <button id="editBtn" class="btn">수정</button>
+        <button id="deleteBtn" class="btn">삭제</button>
+      </div>
+    </article>
+
+    <!-- 댓글 영역 -->
+    <section id="commentSection" class="comments" hidden>
+      <h3>댓글</h3>
+
+      <div class="comment-form">
+        <!-- 닉네임은 선택값. 입력 시 localStorage에 마지막 닉 저장 -->
+        <input type="text" id="commentAuthor" placeholder="닉네임 (선택)" />
+        <textarea id="commentText" placeholder="댓글을 입력하세요"></textarea>
+        <div class="form-actions">
+          <button id="addCommentBtn" class="btn primary">댓글 등록</button>
+        </div>
+      </div>
+
+      <ul id="commentList" class="comment-list">
+        <!-- JS에서 렌더링 -->
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 커뮤니티 게시판</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

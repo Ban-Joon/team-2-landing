@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+            min-height: 100vh;
+            padding-bottom: 200px; /* 데모용 여백 */
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #99cc00, #80b300);
+        }
+
+        footer:hover {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .back-to-top {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(153, 204, 0, 0.3);
+            border-radius: 25px;
+            padding: 12px 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            transition: width 0.3s ease;
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .back-to-top:hover::before {
+            width: 100%;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.3);
+            border-color: transparent;
+        }
+
+        .back-to-top a {
+            color: #99cc00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-to-top:hover a {
+            color: white;
+        }
+
+        .company-info {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(153, 204, 0, 0.1);
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.1s;
+            animation-fill-mode: backwards;
+        }
+
+        .company-info:hover {
+            background: rgba(153, 204, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.15);
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .customer-center {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(153, 204, 0, 0.3);
+            border-radius: 25px;
+            padding: 12px 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: backwards;
+        }
+
+        .customer-center::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            transition: width 0.3s ease;
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .customer-center:hover::before {
+            width: 100%;
+        }
+
+        .customer-center:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.3);
+            border-color: transparent;
+        }
+
+        .customer-center a {
+            color: #99cc00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .customer-center:hover a {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(153, 204, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: backwards;
+        }
+
+        .copyright:hover {
+            background: rgba(153, 204, 0, 0.05);
+            transform: translateY(-1px);
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            footer {
+                padding: 20px 15px;
+            }
+
+            .footer-content {
+                gap: 15px;
+            }
+
+            .company-info {
+                padding: 15px 20px;
+            }
+
+            .company-name {
+                font-size: 16px;
+            }
+
+            .back-to-top,
+            .customer-center {
+                padding: 10px 20px;
+            }
+
+            .back-to-top a,
+            .customer-center a {
+                font-size: 13px;
+            }
+
+            .copyright {
+                font-size: 11px;
+                padding: 12px;
+            }
+        }
+
+        /* 키프레임 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 추가 인터랙티브 요소 */
+        .back-to-top::after,
+        .customer-center::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .back-to-top:hover::after,
+        .customer-center:hover::after {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* 데모용 컨텐츠 스타일 */
+        .demo-content {
+            padding: 50px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .demo-content h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<!-- 푸터 조각: 문서 뼈대 없이 <footer>만 -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-content">
+    <!-- 맨 위로 이동: JS가 있으면 부드러운 스크롤로, 없으면 링크로 동작 -->
+    <a href="#" class="back-to-top" aria-label="맨 위로 이동">
+      <span>Back to Top</span>
+    </a>
+
+    <!-- 회사 정보 -->
+    <div class="company-info" aria-label="회사 정보">
+      <div class="company-name">Made by REBONE</div>
+    </div>
+
+    <!-- 고객센터 -->
+    <div class="customer-center">
+      <a href="customer2.html" aria-label="고객센터 페이지로 이동">Customer Center</a>
+    </div>
+
+    <!-- 저작권 표기: 연도는 필요하면 JS에서 채워 넣기 -->
+    <div class="copyright">
+      <p>
+        Copyright ©
+        <span id="year">2025</span>
+        REBONE . 모든 권리 보유.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

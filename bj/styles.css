@@ -11,18 +11,18 @@
       background-color: #f5f5f5;
     }
 
-    .header {
+    .headerBj {
       text-align: center;
       padding: 2rem 1rem;
       background: linear-gradient(135deg, #56ab2f 0%, #a8e063);
       color: white;
     }
 
-    .header h1 {
+    .headerBj h1 {
       margin-bottom: 0.5rem;
     }
 
-    .header p {
+    .headerBj p {
       opacity: 0.9;
     }
 

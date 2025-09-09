@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid rgba(153, 204, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 0;
+            border-radius: 0;
+        }
+
+        .logo {
+            width: 180px;
+            height: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .search-bar {
+            display: flex;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(153, 204, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(153, 204, 0, 0.15);
+        }
+
+        .search-bar:focus-within {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.2);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: 2px solid transparent;
+            background: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            border-radius: 50px 0 0 50px;
+        }
+
+        .search-input:focus {
+            border-color: #99cc00;
+            background: rgba(153, 204, 0, 0.02);
+        }
+
+        .search-input::placeholder {
+            color: #888;
+            font-weight: 300;
+        }
+
+        .search-btn {
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 0 50px 50px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .search-btn:hover::before {
+            left: 100%;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #80b300, #6d9900);
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: rgba(153, 204, 0, 0.05);
+            border: 1px solid rgba(153, 204, 0, 0.1);
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            border-radius: 25px;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .tab:hover::before {
+            width: 100%;
+        }
+
+        .tab:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 204, 0, 0.3);
+            border-color: transparent;
+        }
+
+        .auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 120px;
+        }
+
+        .auth-btn {
+            cursor: pointer;
+            padding: 12px 20px;
+            border: 2px solid #99cc00;
+            background: linear-gradient(135deg, #99cc00, #80b300);
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .auth-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .auth-btn:hover {
+            background: linear-gradient(135deg, #80b300, #6d9900);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(153, 204, 0, 0.4);
+            border-color: #80b300;
+        }
+
+        .auth-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+            }
+            
+            .top-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo {
+                width: 150px;
+            }
+            
+            .search-container {
+                width: 100%;
+            }
+            
+            .search-input {
+                font-size: 14px;
+                padding: 15px 20px;
+            }
+            
+            .search-btn {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .nav-menu {
+                gap: 8px;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .auth-buttons {
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        /* 키프레임 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* 로딩시 부드러운 효과 */
+        .tab, .auth-btn, .search-bar {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .tab:nth-child(1) { animation-delay: 0.1s; }
+        .tab:nth-child(2) { animation-delay: 0.2s; }
+        .tab:nth-child(3) { animation-delay: 0.3s; }
+        .tab:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="top-row">
+            <div class="logo-container">
+                <img src="images/logo.jpg" alt="logo" class="logo" onclick="location.reload();">
+            </div>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="검색을 입력하세요">
+                    <button class="search-btn">검색</button>
+                </div>
+                <div class="nav-menu">
+                    <div class="tab">판매제품</div>
+                    <div class="tab">중고제품</div>
+                    <div class="tab">재활용 방법</div>
+                    <div class="tab">커뮤니티</div>
+                </div>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="signup2.html" class="auth-btn">회원가입</a>
+                <a href="login2.html" class="auth-btn">로그인</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
